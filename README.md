@@ -1,5 +1,5 @@
 # ToDoList
 
 Hi, to access To do list:
-User: Admin
+Login: Admin
 Password: 1234
