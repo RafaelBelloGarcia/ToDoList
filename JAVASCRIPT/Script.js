@@ -15,7 +15,7 @@ if (transformJSON == true) {
 
   const todo = document.querySelector(".todo-list");
 
-  const deletar = document.querySelector("#clear-all");
+  const clearAllButton = document.querySelector("#clear-all"); // Renomeei para clearAllButton
 
   const select = document.querySelector(".filter-todo");
 
@@ -24,7 +24,7 @@ if (transformJSON == true) {
   formulario.addEventListener("submit", function (conteudo) {
     conteudo.preventDefault();
 
-    //capturar elementos de informação do usuário:
+    // Capturar elementos de informação do usuário:
     let todoInput = formulario.querySelector("input").value;
 
     formulario.reset();
@@ -33,36 +33,36 @@ if (transformJSON == true) {
     let validado = valida(todoInput);
 
     if (validado == true) {
-      adicionanovoelemento(todoInput);
+      adicionaNovoElemento(todoInput);
     }
   });
 
-  deletar.addEventListener("click", function () {
-    // Limpa o campo de entrada de tarefas
-    todoInput.value = "";
+  clearAllButton.addEventListener("click", function () {
+    // Limpar o campo de entrada de tarefas
+    formulario.querySelector("input").value = "";
 
-    // Limpa a lista de tarefas
+    // Limpar a lista de tarefas
     list.length = 0;
-    todoList.innerHTML = "";
+    todo.innerHTML = "";
 
-    // Limpa o filtro selecionado
+    // Limpar o filtro selecionado
     select.value = "all";
 
-    // Remove os dados salvos no localStorage
+    // Remover os dados salvos no localStorage
     localStorage.removeItem("datadata");
   });
 
   select.addEventListener("change", () => {
     if (select.value == "all") {
-      const mapall = list.map(all);
-      console.log(mapall);
+      const mapAll = list.map(all);
+      console.log(mapAll);
     }
     if (select.value == "completed") {
-      const mapcomplete = list.map(check);
-      console.log(mapcomplete);
+      const mapComplete = list.map(check);
+      console.log(mapComplete);
     }
     if (select.value == "uncompleted") {
-      const map = list.map(mapcheck);
+      const map = list.map(mapCheck);
       console.log(map);
     }
   });
@@ -76,7 +76,7 @@ if (transformJSON == true) {
     return value;
   }
 
-  function mapcheck(value) {
+  function mapCheck(value) {
     if (!value.check) {
       document.querySelector("#div" + value.id).style.display = "flex";
     } else {
@@ -92,7 +92,7 @@ if (transformJSON == true) {
   }
 
   function valida(todoInput) {
-    //Validação:
+    // Validação:
     if (todoInput == "") {
       alert("Favor Inserir Informações no Campo Correto");
       return false;
@@ -105,7 +105,7 @@ if (transformJSON == true) {
     }
   }
 
-  function adicionanovoelemento(todoInput) {
+  function adicionaNovoElemento(todoInput) {
     const objeto = {
       item: todoInput,
       id: list.length + 1,
@@ -114,48 +114,48 @@ if (transformJSON == true) {
 
     list.push(objeto);
 
-    adicionanovastags(objeto);
+    adicionaNovaTags(objeto);
 
-    const dataJASON = JSON.stringify(list);
-    localStorage.setItem("datadata", dataJASON);
+    const dataJSON = JSON.stringify(list);
+    localStorage.setItem("datadata", dataJSON);
   }
 
-  function adicionanovastags(objeto) {
+  function adicionaNovaTags(objeto) {
     const div = document.createElement("div");
     div.id = "div" + objeto.id;
     div.classList.add("todo");
 
-    let li = criatagli(objeto.item);
+    let li = criaTagLi(objeto.item);
 
-    let buttoncheck = criatagbuttonchk();
+    let buttonCheck = criaTagButtonCheck();
 
-    let buttontrash = criarbuttontrash();
+    let buttonTrash = criaTagButtonTrash();
 
-    let i = criaritagI();
+    let i = criaTagI();
 
-    let i1 = criaritagItrash();
+    let i1 = criaTagITrash();
 
     div.appendChild(li);
-    div.append(buttoncheck);
-    buttoncheck.appendChild(i);
-    div.append(buttontrash);
-    buttontrash.appendChild(i1);
+    div.append(buttonCheck);
+    buttonCheck.appendChild(i);
+    div.append(buttonTrash);
+    buttonTrash.appendChild(i1);
 
     todo.append(div);
   }
 
-  function criatagli(item) {
+  function criaTagLi(item) {
     let li = document.createElement("li");
     li.classList.add("todo-item");
     li.innerHTML = item;
     return li;
   }
 
-  function criatagbuttonchk() {
-    let buttoncheck = document.createElement("button");
-    buttoncheck.classList.add("check-btn");
-    buttoncheck.id = list.length;
-    buttoncheck.addEventListener("click", (b) => {
+  function criaTagButtonCheck() {
+    let buttonCheck = document.createElement("button");
+    buttonCheck.classList.add("check-btn");
+    buttonCheck.id = list.length;
+    buttonCheck.addEventListener("click", (b) => {
       let botao = b.target;
 
       let check = document.querySelector("#div" + botao.id);
@@ -171,19 +171,19 @@ if (transformJSON == true) {
 
       localStorage.setItem("datadata", JSON.stringify(list));
     });
-    return buttoncheck;
+    return buttonCheck;
   }
 
-  function criarbuttontrash() {
-    let buttontrash = document.createElement("button");
-    buttontrash.classList.add("trash-btn");
-    buttontrash.id = list.length;
-    buttontrash.addEventListener("click", function (b) {
+  function criaTagButtonTrash() {
+    let buttonTrash = document.createElement("button");
+    buttonTrash.classList.add("trash-btn");
+    buttonTrash.id = list.length;
+    buttonTrash.addEventListener("click", function (b) {
       let botao = b.target;
 
       let id = botao.id;
 
-      //remover elementos da lista
+      // Remover elementos da lista
 
       for (let i = 0; i < list.length; i++) {
         if (id == list[i].id) {
@@ -192,22 +192,22 @@ if (transformJSON == true) {
         }
       }
 
-      let div_a_ser_removida = document.querySelector("#div" + id);
+      let divASerRemovida = document.querySelector("#div" + id);
 
-      //remover elementos da tela
+      // Remover elementos da tela
 
-      todo.removeChild(div_a_ser_removida);
+      todo.removeChild(divASerRemovida);
     });
-    return buttontrash;
+    return buttonTrash;
   }
 
-  function criaritagI() {
+  function criaTagI() {
     let i = document.createElement("i");
     i.classList.add("fas", "fa-check");
     return i;
   }
 
-  function criaritagItrash() {
+  function criaTagITrash() {
     let i = document.createElement("i");
     i.classList.add("fas", "fa-trash");
     return i;
@@ -219,7 +219,7 @@ if (transformJSON == true) {
       for (let i = 0; i < datalog.length; i++) {
         log = datalog[i];
         list.push(log);
-        adicionanovastags(log);
+        adicionaNovaTags(log);
       }
     }
   }
