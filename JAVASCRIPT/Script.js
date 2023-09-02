@@ -224,7 +224,7 @@ if (transformJSON == true) {
     }
   }
 } else {
-  window.Location = "./Login.html";
+  window.location = "./Login.html";
 }
 
 logout.addEventListener("click", () => {
