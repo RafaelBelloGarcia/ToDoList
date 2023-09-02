@@ -42,13 +42,13 @@ if (transformJSON == true) {
     todoInput.value = "";
 
     // Limpa a lista de tarefas
-    tasks.length = 0;
-    todoList.innerHTML = "";
+    list.length = 0;
+    todo.innerHTML = "";
 
     // Limpa o filtro selecionado
-    selectFilter.value = "all";
+    select.value = "all";
 
-    // Limpa os dados salvos no localStorage
+    // Remove os dados salvos no localStorage
     localStorage.removeItem("datadata");
   });
 
