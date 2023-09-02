@@ -15,7 +15,7 @@ if (transformJSON == true) {
 
   const todo = document.querySelector(".todo-list");
 
-  //const deletar = document.querySelector("#delete");
+  const deletar = document.querySelector("#delete");
 
   const select = document.querySelector(".filter-todo");
 
@@ -37,7 +37,20 @@ if (transformJSON == true) {
     }
   });
 
-  //deletar.addEventListener("click", criarbuttontrash);
+  deletar.addEventListener("click", function () {
+    // Limpa o campo de entrada de tarefas
+    todoInput.value = "";
+
+    // Limpa a lista de tarefas
+    tasks.length = 0;
+    todoList.innerHTML = "";
+
+    // Limpa o filtro selecionado
+    selectFilter.value = "all";
+
+    // Limpa os dados salvos no localStorage
+    localStorage.removeItem("datadata");
+  });
 
   select.addEventListener("change", () => {
     if (select.value == "all") {
