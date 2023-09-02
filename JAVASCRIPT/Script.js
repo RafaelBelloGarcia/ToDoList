@@ -15,7 +15,7 @@ if (transformJSON == true) {
 
   const todo = document.querySelector(".todo-list");
 
-  const deletar = document.querySelector("#deletar");
+  const deletar = document.querySelector("#clear-all");
 
   const select = document.querySelector(".filter-todo");
 
@@ -25,15 +25,15 @@ if (transformJSON == true) {
     conteudo.preventDefault();
 
     //capturar elementos de informação do usuário:
-    let todoinput = formulario.querySelector("input").value;
+    let todoInput = formulario.querySelector("input").value;
 
     formulario.reset();
     document.querySelector("input").focus();
 
-    let validado = valida(todoinput);
+    let validado = valida(todoInput);
 
     if (validado == true) {
-      adicionanovoelemento(todoinput);
+      adicionanovoelemento(todoInput);
     }
   });
 
@@ -43,7 +43,7 @@ if (transformJSON == true) {
 
     // Limpa a lista de tarefas
     list.length = 0;
-    todo.innerHTML = "";
+    todoList.innerHTML = "";
 
     // Limpa o filtro selecionado
     select.value = "all";
@@ -91,23 +91,23 @@ if (transformJSON == true) {
     return value;
   }
 
-  function valida(todoinput) {
+  function valida(todoInput) {
     //Validação:
-    if (todoinput == "") {
+    if (todoInput == "") {
       alert("Favor Inserir Informações no Campo Correto");
       return false;
-    } else if (todoinput == null) {
+    } else if (todoInput == null) {
       return false;
-    } else if (todoinput == undefined) {
+    } else if (todoInput == undefined) {
       return false;
     } else {
       return true;
     }
   }
 
-  function adicionanovoelemento(todoinput) {
+  function adicionanovoelemento(todoInput) {
     const objeto = {
-      item: todoinput,
+      item: todoInput,
       id: list.length + 1,
       check: false,
     };

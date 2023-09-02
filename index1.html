@@ -13,6 +13,7 @@
       crossorigin="anonymous"
     ></script>
 
+    <!-- Duplicate link to CSS -->
     <link rel="stylesheet" href="CSS/style.css" />
 
     <title>Todo List - Fullture</title>
@@ -27,24 +28,25 @@
       <button class="todo-button" type="submit">
         <i class="fas fa-plus-square"></i>
       </button>
-      <section class="container">
-          <button id='deletar' class="button" type="button">
+      
+      <div class="container">
+          <button id="clear-all" class="button" type="button">
               <i class="fas fa-trash"></i> Limpar Tudo
           </button>
-      </section>
-
+      </div>
+      
       <div class="container">
         <button id='logout' class="todo-button" type="button">
-        <i>Logout</i>
-      </button>
-    </div>
+          <i>Logout</i>
+        </button>
+      </div>
       <div class="select">
         <select name="todos" class="filter-todo">
           <option id="all" value="all">Todas</option>
           <option id="completed" value="completed">Finalizadas</option>
           <option id="uncompleted" value="uncompleted">Não Finalizadas</option>
         </select>
-      </form>
+      </form> <!-- Feche a tag select corretamente -->
     </div>
 
     <div class="todo-container">
