@@ -15,7 +15,7 @@ if (transformJSON == true) {
 
   const todo = document.querySelector(".todo-list");
 
-  const deletar = document.querySelector("#delete");
+  const deletar = document.querySelector("#deletar");
 
   const select = document.querySelector(".filter-todo");
 
